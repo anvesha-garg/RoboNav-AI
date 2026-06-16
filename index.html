@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robot Path Planning Visualizer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <!-- HERO: Grid is the main stage -->
+    <section class="grid-section">
+      <div id="grid" class="grid"></div>
+    </section>
+
+    <!-- SIDEBAR -->
+    <section class="controls">
+      <h1>Path Planner</h1>
+
+      <span class="section-label">Place</span>
+      <div class="button-row">
+        <button id="set-start" class="mode-btn active">⬤ Start</button>
+        <button id="set-goal" class="mode-btn">◎ Goal</button>
+        <button id="toggle-wall" class="mode-btn">▪ Obstacles</button>
+      </div>
+
+      <span class="section-label">Run</span>
+      <div class="button-row">
+        <button id="run-bfs">BFS</button>
+        <button id="run-astar">A*</button>
+      </div>
+      <div class="button-row">
+        <button id="clear-path">Clear</button>
+        <button id="reset-grid">Reset</button>
+      </div>
+
+      <span class="section-label">Grid Size</span>
+      <div class="size-row">
+        <label for="grid-size">Cells per side</label>
+        <input id="grid-size" type="number" min="8" max="40" value="24" />
+        <button id="apply-size">Apply</button>
+      </div>
+
+      <!-- ALGORITHM PANEL — shown when an algorithm is selected/running -->
+      <div id="algo-panel" class="algo-panel hidden">
+        <div class="algo-header">
+          <span id="algo-badge" class="algo-badge"></span>
+          <span id="algo-name" class="algo-name"></span>
+        </div>
+        <p id="algo-tagline" class="algo-tagline"></p>
+
+        <div id="algo-phase" class="algo-phase"></div>
+
+        <div class="algo-stats">
+          <div class="stat-item">
+            <span class="stat-val" id="stat-visited">0</span>
+            <span class="stat-key">Visited</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val" id="stat-queue">0</span>
+            <span class="stat-key" id="stat-queue-label">Queue</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val" id="stat-path">—</span>
+            <span class="stat-key">Path len</span>
+          </div>
+        </div>
+
+        <div id="algo-steps" class="algo-steps"></div>
+
+        <div id="algo-result" class="algo-result hidden"></div>
+      </div>
+
+      <span class="section-label">Legend</span>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#34d399"></span> Start</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#f97316"></span> Goal</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#1e293b;border:1px solid #334155"></span> Wall</div>
+        <div class="legend-item"><span class="legend-dot" style="background:rgba(56,189,248,0.5)"></span> Exploring</div>
+        <div class="legend-item"><span class="legend-dot" style="background:rgba(168,85,247,0.45)"></span> Visited</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#facc15"></span> Path</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
